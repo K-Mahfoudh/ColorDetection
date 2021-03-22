@@ -51,12 +51,13 @@ while (1):
     if len(contours) > 0 and frame == 0:
         frame = 20
         maxContour = max(contours, key=cv2.contourArea)
-        cv2.putText(green, str(cv2.minAreaRect(maxContour)), (50, 50),
+        cv2.putText(green, str(cv2.contourArea(maxContour)*100/(height * width)), (50, 50),
                 cv2.FONT_HERSHEY_SIMPLEX, 1.0,
                 (0, 0, 255))
-        print(str(cv2.minAreaRect(maxContour)))
+        area = cv2.contourArea(maxContour)
         print("Area us  {}".format(cv2.contourArea(maxContour)))
         print("Arc length is {}".format(cv2.arcLength(maxContour, True)))
+        print("Pourcentage est {}%".format(area*100/(height * width)))
 
 
 
