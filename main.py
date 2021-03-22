@@ -15,7 +15,6 @@ while (1):
     # Récupération des frames
     _, imageFrame = camera.read()
     height, width = imageFrame.shape[:2]
-    print("Height is {} and width is {}".format(height, width))
     frame -= 1
     # Conversion RGB vers HSV
     hsvFrame = cv2.cvtColor(imageFrame, cv2.COLOR_BGR2HSV)
