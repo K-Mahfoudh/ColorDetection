@@ -54,6 +54,10 @@ while (1):
                 cv2.FONT_HERSHEY_SIMPLEX, 1.0,
                 (0, 0, 255))
         print(str(cv2.minAreaRect(maxContour)))
+        print("Area us  {}".format(cv2.contourArea(maxContour)))
+        print("Arc length is {}".format(cv2.arcLength(maxContour,True)))
+
+
 
 
 
