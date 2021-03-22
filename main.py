@@ -44,18 +44,18 @@ while (1):
     green = cv2.bitwise_and(imageFrame, imageFrame, mask=green_mask)
 
     # Creating contour to track red color
-    contours, hierarchy = cv2.findContours(red_mask,
+    contours, hierarchy = cv2.findContours(green_mask,
                                            cv2.RETR_TREE,
                                            cv2.CHAIN_APPROX_SIMPLE)
     if len(contours) > 0 and frame == 0:
         frame = 20
         maxContour = max(contours, key=cv2.contourArea)
-        cv2.putText(imageFrame, str(cv2.minAreaRect(maxContour)), (50, 50),
+        cv2.putText(green, str(cv2.minAreaRect(maxContour)), (50, 50),
                 cv2.FONT_HERSHEY_SIMPLEX, 1.0,
                 (0, 0, 255))
         print(str(cv2.minAreaRect(maxContour)))
         print("Area us  {}".format(cv2.contourArea(maxContour)))
-        print("Arc length is {}".format(cv2.arcLength(maxContour,True)))
+        print("Arc length is {}".format(cv2.arcLength(maxContour, True)))
 
 
 
