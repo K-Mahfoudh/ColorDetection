@@ -55,7 +55,7 @@ class ColorDetector:
                                                    cv2.RETR_TREE,
                                                    cv2.CHAIN_APPROX_SIMPLE)
             pourcentage = 0
-            if len(contours) > 0 and frame == 0:
+            if len(contours) > 0 and self.frame == 0:
                 self.frame = 20
                 maxContour = max(contours, key=cv2.contourArea)
                 cv2.putText(green, str(cv2.contourArea(maxContour)*100/(height * width)), (50, 50),
@@ -76,13 +76,13 @@ class ColorDetector:
         cv2.imshow("Green", green)
 
     def create_color_controller(self):
-        cv2.createTrackbar('Hmin', 'tracker', 0, 255)
-        cv2.createTrackbar('Smin', 'tracker', 0, 255)
-        cv2.createTrackbar('Vmin', 'tracker', 0, 255)
+        cv2.createTrackbar('Hmin', 'tracker', 0, 255, lambda : None)
+        cv2.createTrackbar('Smin', 'tracker', 0, 255,  lambda : None)
+        cv2.createTrackbar('Vmin', 'tracker', 0, 255, lambda : None)
 
-        cv2.createTrackbar('Hmax', 'tracker', 0, 255)
-        cv2.createTrackbar('Smax', 'tracker', 0, 255)
-        cv2.createTrackbar('Vmax', 'tracker', 0, 255)
+        cv2.createTrackbar('Hmax', 'tracker', 0, 255, lambda : None)
+        cv2.createTrackbar('Smax', 'tracker', 0, 255, lambda : None)
+        cv2.createTrackbar('Vmax', 'tracker', 0, 255, lambda : None)
 
     def get_tracker_pos(self):
         h_min = cv2.getTrackbarPos("Hmin", "tracker")
@@ -98,7 +98,8 @@ class ColorDetector:
 
 def main():
     colorDetector = ColorDetector(20)
-    colorDetector.detect_colors()
+    while 1:
+        colorDetector.detect_colors()
 
 
 if __name__ == "__main__":
